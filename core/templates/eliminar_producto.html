@@ -1,0 +1,18 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eliminar Producto</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+    <h1>Eliminar Producto</h1>
+    <p>¿Estás seguro de que quieres eliminar el producto "{{ producto.nombre }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Sí, eliminar</button>
+        <a href="{% url 'listar_productos' %}">No, volver a la lista</a>
+    </form>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

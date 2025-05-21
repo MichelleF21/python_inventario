@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Productos</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+
+    <header>
+        <h1>Gestión de inventario</h1>
+    </header>
+
+    <h3>Lista de Productos</h3>
+    </br>
+
+    <a href="{% url 'crear_producto' %}">Crear nuevo producto</a>
+
+    <ul>
+    </br>
+        {% for producto in productos %}
+        <li>
+            {{ producto.name }} - Cantidad: {{ producto.quantity }} - Precio: {{ producto.price }}
+            <form method="post" action="{% url 'eliminar_producto' producto.id %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit">Eliminar</button>
+            </form>
+        </li>
+        {% empty %}
+        <li>No hay productos registrados.</li>
+        {% endfor %}
+    </ul>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
